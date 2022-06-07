@@ -1,0 +1,28 @@
+
+https://www.spoj.com/problems/ADDREV/
+
+#include <iostream>
+using namespace std;
+
+int rev(int n){
+	int sum=0;
+	while(n){
+		int p=n%10;
+		sum=sum*10+p;
+		n=n/10;
+	}
+	return sum;
+}
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+		int a,b;
+		cin>>a>>b;
+		int p=rev(a)+rev(b);
+		
+		cout<<rev(p)<<endl;
+	}
+	return 0;
+}

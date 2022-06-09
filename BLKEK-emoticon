@@ -1,0 +1,77 @@
+https://www.spoj.com/problems/BLKEK/
+
+#include <iostream>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+		string s;
+		cin>>s;
+		int n=s.length();
+		
+		int count=0,front=0,back=0,sum=0;
+		for(int i=0;i<n;i++){
+			if(s[i]=='K') count++;
+		}
+		
+		for(int i=0;i<n;i++){
+			if(s[i]=='K') front++;
+			
+			if(s[i]=='E'){
+				back=count-front;
+				sum+=front*back;
+			}
+		}
+		cout<<sum<<endl;
+	}
+	return 0;
+}
+
+
+
+--------------RISHABJ JAIN'S ANSWER------------------------
+-------------for all 3 letter words can use this---------
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+	// your code goes here
+	int t;
+	cin>>t;
+	while(t--){
+		string s;
+		cin>>s;
+		int n=s.length();
+		
+		vector<int>front(n,0);
+		vector<int>back(n,0);
+		int count=0;
+		long long int ans=0;
+		
+		front[0]=(s[0]=='K' ?1:0);
+	    back[n-1]=(s[n-1]=='K' ?1:0);
+	    
+	    //0 index not necessary or depend on anything
+	    //generating k values for all front indexes
+		for(int i=1;i<n;i++){
+			front[i]=front[i-1]+(s[i]=='K' ?1:0);
+		
+		}
+		for(int i=n-2;i>=0;i--){
+				back[i]=back[i+1]+(s[i]=='K' ?1:0);
+		}
+		
+		for(int i=1;i<=n-2;i++){
+			if(s[i]=='E'){
+				ans+=front[i]*back[i];
+			}
+		}
+		cout<<ans<<endl;
+	}
+	return 0;
+}

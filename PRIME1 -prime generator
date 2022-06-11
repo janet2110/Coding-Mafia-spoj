@@ -1,0 +1,50 @@
+https://www.spoj.com/problems/PRIME1/
+
+#include <iostream>
+using namespace std;
+#include<math.h>
+
+
+long int prime_number_checker(long int num){
+	if(num<=1){
+		return false;
+	}
+	else if(num==2){
+		cout<<num<<endl;                         
+		return 0;	
+	}
+	else if (num % 2 == 0){
+        return false;
+    }        
+    else{
+    for(int seprator =3;seprator<=sqrt(num)+1;seprator+=2){
+			if(num%seprator==0){
+				return false;
+			}
+		
+		}
+	
+		cout<<num<<endl;                         
+		return 0;	
+	}
+	
+    
+}
+int main(){	
+	long int num,result,t;
+	long int starting, ending;
+	
+	cin>>t;
+	
+	while(t--){
+		cin>>starting>>ending;
+		
+		for(starting;starting<=ending;starting++){
+			prime_number_checker(starting);
+		}
+		cout<<endl;
+	}
+	
+	
+	return 0;
+}
